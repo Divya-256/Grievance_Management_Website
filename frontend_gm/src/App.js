@@ -1,10 +1,17 @@
 import './App.css';
+import { BrowserRouter as Router,Routes,Route} from 'react-router-dom';
+import UserDashboard from './Components/UserDashboard/UserDashboard';
 
 function App() {
   return (
+    <Router>
     <div className="App">
-      <h1>Grievance_Management_Website</h1>
+      <Routes>
+           <Route path='/userDashboard' element={<UserDashboard/>}/>
+      </Routes>
+     
     </div>
+    </Router>
   );
 }
 
