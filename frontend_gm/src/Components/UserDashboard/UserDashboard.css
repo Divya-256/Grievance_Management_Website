@@ -1,33 +1,53 @@
 
 .grievForm {
-    max-width: 600px;
-    margin: 50px auto;
+    max-width: 100vw;
+    /* margin: 50px auto; */
     padding: 20px;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: #f9f9f9;
+    /* background-color: #f9f9f9; */
+    background-image: linear-gradient(to left, #262b6a, black);
 }
 
 .grievForm h1, .grievForm h2, .grievForm h3 {
     text-align: center;
-    color: #333;
+    color: #ffffff;
 }
-
+.outerForm{
+    border: #1b1f61 1px solid;
+    border-radius: 10px;
+    background-image: linear-gradient(to right, #000000,#1b1f5d);
+}
+.grievance-list{
+    display: flex;    
+    justify-content: center;
+  
+}
 .compForm {
     display: flex;
     flex-direction: column;
     gap: 15px; 
+    color: white;
+    padding: 36px;
 }
-
+.firstSet{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.row1,.row2{
+     width: 48%;
+}
 .form-group {
     display: flex;
     flex-direction: column;
+    margin-top: 1vw;
 }
 
 .form-group label {
     font-size: 1rem;
     margin-bottom: 5px;
-    color: #555;
+    color: #ffffff;
 }
 
 .form-group input, .form-group textarea {
@@ -37,6 +57,8 @@
     font-size: 1rem;
     outline: none;
     transition: border-color 0.3s ease;
+    background: none;
+    color: white;
 }
 
 .form-group input:focus, .form-group textarea:focus {
@@ -61,4 +83,30 @@ button[type="submit"] {
 
 button[type="submit"]:hover {
     background-color: #0056b3;
+}
+.prevGriev{
+    margin-top: 3vw;
+    padding: 20px;
+}
+/* table{
+    width: 100%;
+} */
+table,th,td{
+    border: 1px solid rgb(255, 255, 255);
+    border-collapse: collapse;
+    text-align: center;
+    padding: 1vw;
+}
+td:hover{
+    background-color: #191717;
+    color: white;
+}
+
+tr,th{
+    background-color: #0e2b45;
+    color: white;
+    border: 1px solid white;
+}
+th{
+    background-color:#06213a ;
 }

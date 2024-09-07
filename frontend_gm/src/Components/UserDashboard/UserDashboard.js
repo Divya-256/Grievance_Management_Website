@@ -21,18 +21,21 @@ export default function UserDashboard() {
             {
                 id: 1,
                 category: 'Electricity Issue',
+                description: 'The electricity is not working in my house.',
                 status: 'Pending',
                 createdAt: '2023-09-04T10:30:00'
             },
             {
                 id: 2,
                 category: 'Water Supply Issue',
+                description: 'There is no water supply in my area.The electricity is not working in my house.The electricity is not working in my house.The electricity is not working in my house.The electricity is not working in my house.The electricity is not working in my house.',
                 status: 'Resolved',
                 createdAt: '2023-09-02T15:45:00'
             },
             {
                 id: 3,
                 category: 'Road Maintenance',
+                description: 'The road in front of my house is not properly maintained.',
                 status: 'In Progress',
                 createdAt: '2023-09-01T09:00:00'
             }
@@ -72,53 +75,78 @@ export default function UserDashboard() {
         <div className='grievForm'>
             <h1>Grievance Management Website</h1>
             <h2>User Dashboard</h2>
+            <div>
             <h3>Register your complaints here</h3>
+            <div className='outerForm'>
+
+            
             <form onSubmit={submitGrievance} className='compForm'>
-                <div className="form-group">
-                    <label>Name: </label>
-                    <input type='text' value={name} onChange={(e) => setName(e.target.value)} required />
+                <div className="firstSet">
+                <div className='row1'>
+                    <div className="form-group">
+                        <label>Name: </label>
+                        <input type='text' value={name} onChange={(e) => setName(e.target.value)} required />
+                    </div>
+                    <div className="form-group">
+                        <label>Email: </label>
+                        <input type='email' value={email} onChange={(e) => setEmail(e.target.value)} required />
+                    </div>
                 </div>
+               <div className="row2">
                 <div className="form-group">
-                    <label>Email: </label>
-                    <input type='email' value={email} onChange={(e) => setEmail(e.target.value)} required />
-                </div>
-                <div className="form-group">
-                    <label>Address: </label>
-                    <input type='text' value={address} onChange={(e) => setAddress(e.target.value)} required />
-                </div>
-                <div className="form-group">
-                    <label>Category: </label>
-                    <input type="text"  value={category} onChange={(e) => setCategory(e.target.value)} required />
-                </div>
+                        <label>Address: </label>
+                        <input type='text' value={address} onChange={(e) => setAddress(e.target.value)} required />
+                    </div>
+                    <div className="form-group">
+                        <label>Category: </label>
+                        <input type="text"  value={category} onChange={(e) => setCategory(e.target.value)} required />
+                    </div>
+               </div>
+               </div>
                 <div className="form-group">
                     <label>Description: </label>
-                    <textarea placeholder='Description' value={description} onChange={(e) => setDescription(e.target.value)} required />
+                    <textarea  value={description} onChange={(e) => setDescription(e.target.value)} required />
                 </div>
                 <button type="submit">Submit Grievance</button>
             </form>
-
-
-            <h3>Previously Submitted Grievances</h3>
-            <div className="grievance-list">
-                {submittedGrievances.length>0?(
-                     <ul>
-                        {submittedGrievances.map((grievance)=>(
-                            <li key={grievance.id}>
-                                <strong>Category:</strong> {grievance.category} <br />
-                                <strong>Status:</strong> {grievance.status} <br />
-                                <strong>Submitted At:</strong> {new Date(grievance.createdAt).toLocaleString()}
-                            </li>
-                        ))}
-                       
-                     </ul>
-                ):(
-                    <p>No grievances submitted yet.</p>
-                )}
-                
-                    
-                
             </div>
-
+            </div>
+            <div className='prevGriev'>
+                <h2>Previously Submitted Grievances</h2>
+                <div className="grievance-list">
+                    
+                    {submittedGrievances.length>0?(
+                        <table>
+                        
+                        <tr>
+                                <tr>
+                                <th>Grievance Id</th>    
+                                <th>Category</th>
+                                <th>Description</th>
+                                <th>Submitted At</th>
+                                <th>Status</th>
+                                </tr>
+                            {submittedGrievances.map((grievance)=>(
+                                
+                                <tr key={grievance.id}>
+                                    <td>{grievance.id}<br/></td>
+                                    <td>{grievance.category} <br /></td>
+                                    <td>{grievance.description}<br/></td>
+                                    <td>{new Date(grievance.createdAt).toLocaleString()}</td>
+                                    <td>{grievance.status} <br /></td>
+                                </tr>
+                            ))}
+                        
+                        </tr>
+                        </table>
+                    ):(
+                        <p>No grievances submitted yet.</p>
+                    )}
+                    
+                        
+                    
+                </div>
+            </div>
         </div>
     );
 }
