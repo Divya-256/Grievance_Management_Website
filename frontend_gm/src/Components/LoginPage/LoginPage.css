@@ -6,13 +6,14 @@
   }
   
  
-  .homePage {
+  .loginPage {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f0f4f8;
+    background-image: linear-gradient(to left, #262b6a, black);
+
     padding: 20px;
   }
   
@@ -82,7 +83,7 @@
   
 
   p {
-    font-size: 32px;
+    font-size: 29px;
     color: rgb(24, 195, 61);
     text-align: center;
   }

@@ -37,7 +37,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="homePage">
+    <div className="loginPage">
 
       <form className="loginForm" onSubmit={handleLoginSubmit}>
         <div className="formGroup">
