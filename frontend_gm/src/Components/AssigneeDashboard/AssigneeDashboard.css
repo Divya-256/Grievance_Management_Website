@@ -1,0 +1,82 @@
+.assignee-dashboard {
+    padding: 20px;
+    background-color: #f5f5f5;
+  }
+  
+  .grievances-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  .grievances-table th, .grievances-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .grievances-table tr:hover {
+    background-color: #494646;
+    cursor: pointer;
+  }
+  
+  .grievance-details {
+    background-color: #ffffff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-top: 20px;
+  }
+  
+  .grievance-details h2 {
+    margin-bottom: 20px;
+  }
+  
+  .status-update, .feedback-section {
+    margin-bottom: 15px;
+  }
+  
+  .status-update label, .feedback-section label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  
+  .status-update select, .feedback-section textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .feedback-section textarea {
+    height: 100px;
+    resize: none;
+  }
+  
+  .submit-btn {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .submit-btn:hover {
+    background-color: #45a049;
+  }
+  
+  .success-message {
+    color: green;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+  
+  .error-message {
+    color: red;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+  
