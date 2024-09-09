@@ -1,0 +1,13 @@
+
+
+.outerForm{
+    border: #1b1f61 1px solid;
+    border-radius: 10px;
+    background-image: linear-gradient(to right, #000000,#1b1f5d);
+}
+
+.headings{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
