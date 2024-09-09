@@ -13,6 +13,11 @@
     text-align: center;
     color: #ffffff;
 }
+
+h3{
+    margin: 20px;
+}
+
 .outerForm{
     border: #1b1f61 1px solid;
     border-radius: 10px;

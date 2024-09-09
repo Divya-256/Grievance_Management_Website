@@ -73,7 +73,7 @@ export default function AssigneeDashboard() {
   };
 
   return (
-    <div className="assignee-dashboard">
+    <div className="grievForm">
       <h1>Assigned Grievances</h1>
       
       <table className="grievances-table">
@@ -108,7 +108,7 @@ export default function AssigneeDashboard() {
       </table>
 
       {selectedGrievance && (
-        <div className="grievance-details">
+        <div className="outerForm">
           <h2>Grievance Details</h2>
           <p><strong>User:</strong> {selectedGrievance.user.name}</p>
           <p><strong>Email:</strong> {selectedGrievance.user.email}</p>
