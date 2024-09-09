@@ -14,7 +14,7 @@ export default function AssigneeDashboard() {
       {
         id: 1,
         user: { name: 'John Doe', email: 'john@example.com', address: '123 Main St' },
-        description: 'Issue with the billing process',
+        category: 'Damaged Products',
         status: 'PENDING',
         feedback: '',
         assignedDate: '2023-09-01',
@@ -22,7 +22,7 @@ export default function AssigneeDashboard() {
       {
         id: 2,
         user: { name: 'Jane Smith', email: 'jane@example.com', address: '456 Oak St' },
-        description: 'Technical issue with the login system',
+        category: 'Incorrect Products',
         status: 'IN_PROGRESS',
         feedback: '',
         assignedDate: '2023-09-02',
@@ -30,7 +30,7 @@ export default function AssigneeDashboard() {
       {
         id: 3,
         user: { name: 'Bob Johnson', email: 'bob@example.com', address: '789 Pine St' },
-        description: 'Unable to update profile information',
+        category: 'App Issues',
         status: 'PENDING',
         feedback: '',
         assignedDate: '2023-09-03',
@@ -48,6 +48,7 @@ export default function AssigneeDashboard() {
 
   const handleStatusChange = (grievanceId, newStatus) => {
     setStatusUpdate({ ...statusUpdate, [grievanceId]: newStatus });
+    console.log(statusUpdate);
   };
 
   const handleFeedbackChange = (grievanceId, newFeedback) => {
@@ -76,7 +77,7 @@ export default function AssigneeDashboard() {
     <div className="grievForm">
       <h1>Assigned Grievances</h1>
       
-      <table className="grievances-table">
+      {/* <table className="grievances-table">
         <thead>
           <tr>
             <th>ID</th>
@@ -105,7 +106,36 @@ export default function AssigneeDashboard() {
             ))
           )}
         </tbody>
-      </table>
+      </table> */}
+      <div className="table-bg">
+            <div className="table-heads">
+                <div>Grievance id</div>
+                <div>Name</div>
+                <div>Category</div>
+                <div>Assigned Date</div>
+                <div>Status</div>
+            </div>
+      </div>
+
+      {grievances.length === 0 ? (
+            <tr>
+              <td colSpan="6">No grievances yet.</td>
+            </tr>
+          ) : ( grievances.map((grievance) => (
+
+                    <div className='rows' onClick={() => handleRowSelect(grievance)}>
+                        <div className="table-row">
+                            <div className="row">{grievance.id}</div>
+                            <div className="row">{grievance.user.name}</div>
+                            <div className="row">{grievance.category}</div>
+                            <div className='row'>{new Date(grievance.assignedDate).toLocaleDateString()}</div>
+                            <div className='row'>{grievance.status}</div>
+                        </div>
+
+                    </div>)
+                )
+              )
+        }
 
       {selectedGrievance && (
         <div className="outerForm">

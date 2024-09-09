@@ -26,11 +26,22 @@ h2{
 }
 .table-row{
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     margin-bottom: 10px;
     margin-top: 10px;
     text-align: center;
 }
-.name{
-    text-align: center;
+.row{
+    margin-left: 55px;
+    margin-right: 50px;
+    width: 200px;
+}
+
+.assignee-select{
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #1b1f61;
+    color: white;
 }

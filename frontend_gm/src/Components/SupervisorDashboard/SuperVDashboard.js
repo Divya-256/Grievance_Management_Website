@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 function SuperVDashboard() {
 
   const [grievances, setGrievances] = useState([]);
+  const [assigneeUpdate, setAssigneeUpdate] = useState({});
 
   useEffect(() => {
     const grievances = [
@@ -13,7 +14,7 @@ function SuperVDashboard() {
         description: 'Issue with the billing process',
         status: 'PENDING',
         category: 'repair',
-        assignedDate: '2023-09-01',
+        assignee: 'md',
       },
       {
         id: 2,
@@ -21,7 +22,7 @@ function SuperVDashboard() {
         description: 'Technical issue with the login system',
         status: 'IN_PROGRESS',
         category: 'replacement',
-        assignedDate: '2023-09-02',
+        assignee: 'worker',
       },
       {
         id: 3,
@@ -29,13 +30,18 @@ function SuperVDashboard() {
         description: 'Unable to update profile information',
         status: 'PENDING',
         category: 'not arrived',
-        assignedDate: '2023-09-03',
+        assignee: 'manager',
       }
     ];
 
     const sortedGrievances = grievances.sort((a, b) => new Date(b.assignedDate) - new Date(a.assignedDate));
     setGrievances(sortedGrievances);
   }, []);
+
+  const handleAssigneeChange = (grievanceId, newAssignee) => {
+    setAssigneeUpdate({ assignee: newAssignee });
+    console.log(assigneeUpdate);
+  };
 
   return (
     <div className='grievForm'>
@@ -44,10 +50,11 @@ function SuperVDashboard() {
             <h2>SuperVisor Dashboard</h2>
             <h2>Grievances</h2>
         </div>
+        
         <div className="table-bg">
             <div className="table-heads">
                 <div>Grievance id</div>
-                <div className="">Name</div>
+                <div>Name</div>
                 <div>Category</div>
                 <div>Assignee</div>
                 <div>Status</div>
@@ -56,17 +63,25 @@ function SuperVDashboard() {
 
         {grievances.length === 0 ? (
             <tr>
-              <td colSpan="6">No grievances assigned yet.</td>
+              <td colSpan="6">No grievances yet.</td>
             </tr>
           ) : ( grievances.map((grievance) => (
 
                     <div className='rows'>
                         <div className="table-row">
-                            <div>{grievance.id}</div>
-                            <div className="name">{grievance.user.name}</div>
-                            <div>{grievance.category}</div>
-                            <div>Assignee</div>
-                            <div>{grievance.status}</div>
+                            <div className="row">{grievance.id}</div>
+                            <div className="row">{grievance.user.name}</div>
+                            <div className="row">{grievance.category}</div>
+                            <div className='row'>
+                                <select
+                                  className='assignee-select'
+                                  onChange={(e) => handleAssigneeChange(grievance.id, e.target.value)}>
+                                    <option value="assignee1">Assignee 1</option>
+                                    <option value="assignee2">Assignee 2</option>
+                                    <option value="assignee3">Assignee 3</option>
+                                </select>
+                            </div>
+                            <div className='row'>{grievance.status}</div>
                         </div>
 
                     </div>)
