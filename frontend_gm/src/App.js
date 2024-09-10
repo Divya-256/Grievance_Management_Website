@@ -6,7 +6,7 @@ import LoginPage from './Components/LoginPage/LoginPage';
 import HomePage from './Components/HomePage/HomePage';
 import AssigneeDashboard from './Components/AssigneeDashboard/AssigneeDashboard'
 import SuperVDashboard from './Components/SupervisorDashboard/SuperVDashboard';
-import TempAssignee from './Components/Temp/TempAssignee';
+// import TempAssignee from './Components/Temp/TempAssignee';
 import GrievDetails from './Components/GrievDetails/GrievDetails';
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
            <Route path='/userDashboard' element={<UserDashboard/>}/>
            <Route path='/assigneeDashboard' element={<AssigneeDashboard/>}/>
            <Route path='/supervDashboard' element={<SuperVDashboard/>}/>
-            <Route path='/temp' element={<TempAssignee/>}/>
+            {/* <Route path='/temp' element={<TempAssignee/>}/> */}
             <Route path='/grievance-list/:id' element={<GrievDetails />} />
       </Routes>
      

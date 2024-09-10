@@ -14,8 +14,8 @@
   }
   
   .grievTable th {
-    background-color: #f2f2f2;
-    text-align: left;
+    background-image: linear-gradient( #000000,#1b1f5d);
+        text-align: left;
   }
   
   .grievTable tr {

@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import './AssigneeDashboard.css';
+import { useNavigate,useLocation } from 'react-router-dom';
 
 export default function AssigneeDashboard() {
   const [grievances, setGrievances] = useState([]);
-  const [selectedGrievance, setSelectedGrievance] = useState(null);
-  const [feedback, setFeedback] = useState({});
-  const [statusUpdate, setStatusUpdate] = useState({});
-  const [errorMessage, setErrorMessage] = useState(null);
-  const [successMessage, setSuccessMessage] = useState(null);
+  const navigate = useNavigate();
+   const location=useLocation();
 
   useEffect(() => {
     const mockGrievances = [
@@ -41,37 +39,18 @@ export default function AssigneeDashboard() {
     setGrievances(sortedGrievances);
   }, []);
 
+  
   const handleRowSelect = (grievance) => {
-    setSelectedGrievance(grievance);
-    setSuccessMessage(null); 
+    navigate(`/grievance-list/${grievance.id}`, { state: { grievance } });
   };
-
-  const handleStatusChange = (grievanceId, newStatus) => {
-    setStatusUpdate({ ...statusUpdate, [grievanceId]: newStatus });
-    console.log(statusUpdate);
-  };
-
-  const handleFeedbackChange = (grievanceId, newFeedback) => {
-    setFeedback({ ...feedback, [grievanceId]: newFeedback });
-  };
-
-  const handleSubmit = (grievanceId) => {
-    
-    const updatedGrievances = grievances.map(g => {
-      if (g.id === grievanceId) {
-        return { 
-          ...g, 
-          status: statusUpdate[grievanceId] || g.status,
-          feedback: feedback[grievanceId] || g.feedback
-        };
-      }
-      return g;
-    });
-
-    setGrievances(updatedGrievances);
-    setSuccessMessage(`Grievance ${grievanceId} updated successfully!`);
-    setSelectedGrievance(null); 
-  };
+  useEffect(() => {
+    if (location.state && location.state.updatedGrievance) {
+        const updatedGrievance = location.state.updatedGrievance;
+        setGrievances((prevGrievances) =>
+            prevGrievances.map((g) => (g.id === updatedGrievance.id ? updatedGrievance : g))
+        );
+    }
+}, [location.state]);
 
   return (
     <div className="grievForm">
@@ -113,6 +92,7 @@ export default function AssigneeDashboard() {
                 <div>Name</div>
                 <div>Category</div>
                 <div>Assigned Date</div>
+                {/* <div>Feedback</div> */}
                 <div>Status</div>
             </div>
       </div>
@@ -129,6 +109,7 @@ export default function AssigneeDashboard() {
                             <div className="row">{grievance.user.name}</div>
                             <div className="row">{grievance.category}</div>
                             <div className='row'>{new Date(grievance.assignedDate).toLocaleDateString()}</div>
+                            {/* <div className='row'>{grievance.feedback || 'No Feedback'}</div> */}
                             <div className='row'>{grievance.status}</div>
                         </div>
 
@@ -137,7 +118,7 @@ export default function AssigneeDashboard() {
               )
         }
 
-      {selectedGrievance && (
+      {/* {selectedGrievance && (
         <div className="outerForm">
           <h2>Grievance Details</h2>
           <p><strong>User:</strong> {selectedGrievance.user.name}</p>
@@ -174,7 +155,7 @@ export default function AssigneeDashboard() {
       )}
 
       {successMessage && <p className="success-message">{successMessage}</p>}
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
+      {errorMessage && <p className="error-message">{errorMessage}</p>} */}
     </div>
   );
 }

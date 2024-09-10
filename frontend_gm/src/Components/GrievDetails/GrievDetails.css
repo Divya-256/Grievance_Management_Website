@@ -1,7 +1,9 @@
 .detailsContainer {
     padding: 20px;
   }
-  
+  .detailsContainer h1{
+    color: white;
+  }
   .outerForm {
     border: 1px solid #ccc;
     padding: 20px;

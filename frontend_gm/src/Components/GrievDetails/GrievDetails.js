@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import './GrievDetails.css'; // External CSS
+import './GrievDetails.css'; 
 
 export default function GrievDetails() {
   const location = useLocation();
@@ -12,11 +12,10 @@ export default function GrievDetails() {
 
   const handleSubmit = () => {
     const updatedGrievance = { ...grievance, status: statusUpdate, feedback };
-    // Normally here you'd send the updatedGrievance to the backend
 
     setSuccessMessage(`Grievance ${grievance.id} updated successfully`);
     setTimeout(() => {
-      navigate('/temp', { state: { updatedGrievance } }); // Pass updated grievance back to dashboard
+      navigate('/assigneeDashboard', { state: { updatedGrievance } }); 
     }, 1000);
   };
 

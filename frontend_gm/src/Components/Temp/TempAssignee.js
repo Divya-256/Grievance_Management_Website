@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './TempAssignee.css'; // External CSS
+import './TempAssignee.css'; 
 import { useLocation } from 'react-router-dom';
 export default function TempAssignee() {
   const [grievances, setGrievances] = useState([]);
@@ -42,7 +42,6 @@ export default function TempAssignee() {
     navigate(`/grievance-list/${grievance.id}`, { state: { grievance } });
   };
   useEffect(() => {
-    // If there's updated grievance in the state, update the list of grievances
     if (location.state && location.state.updatedGrievance) {
         const updatedGrievance = location.state.updatedGrievance;
         setGrievances((prevGrievances) =>
