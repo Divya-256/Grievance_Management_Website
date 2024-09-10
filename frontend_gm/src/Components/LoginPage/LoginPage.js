@@ -18,7 +18,7 @@ export default function HomePage() {
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Replace this with your actual login API
+
       const response = await axios.post('/api/login', loginData);
       if (response.data.role === 'CUSTOMER') {
         navigate('/customer-dashboard'); // Redirect to customer dashboard

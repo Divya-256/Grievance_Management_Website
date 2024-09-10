@@ -1,0 +1,45 @@
+.detailsContainer {
+    padding: 20px;
+  }
+  
+  .outerForm {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-top: 20px;
+  }
+  
+  .updateStatus, .feedbackSection {
+    margin: 15px 0;
+  }
+  
+  label {
+    display: block;
+    font-weight: bold;
+  }
+  
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    resize: vertical;
+  }
+  
+  .submitBtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .submitBtn:hover {
+    background-color: #45a049;
+  }
+  
+  .successMessage {
+    color: green;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+  
