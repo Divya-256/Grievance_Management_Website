@@ -53,8 +53,10 @@ export default function AssigneeDashboard() {
 }, [location.state]);
 
   return (
-    <div className="grievForm">
-      <h1>Assigned Grievances</h1>
+    <div className="griev">
+      <h1>Grievance Management Website</h1>
+      <h2>Assignee Dashboard</h2>
+      <h2>Assignments</h2>
       
       {/* <table className="grievances-table">
         <thead>
@@ -91,9 +93,9 @@ export default function AssigneeDashboard() {
                 <div>Grievance id</div>
                 <div>Name</div>
                 <div>Category</div>
-                <div>Assigned Date</div>
-                {/* <div>Feedback</div> */}
+                <div>Assigned Date</div>               
                 <div>Status</div>
+                <div className='table-feedback'>Feedback</div>
             </div>
       </div>
 
@@ -105,12 +107,12 @@ export default function AssigneeDashboard() {
 
                     <div className='rows' onClick={() => handleRowSelect(grievance)}>
                         <div className="table-row">
-                            <div className="row">{grievance.id}</div>
-                            <div className="row">{grievance.user.name}</div>
-                            <div className="row">{grievance.category}</div>
-                            <div className='row'>{new Date(grievance.assignedDate).toLocaleDateString()}</div>
-                            {/* <div className='row'>{grievance.feedback || 'No Feedback'}</div> */}
-                            <div className='row'>{grievance.status}</div>
+                            <div className="row-assignee">{grievance.id}</div>
+                            <div className="row-assignee">{grievance.user.name}</div>
+                            <div className="row-assignee">{grievance.category}</div>
+                            <div className='row-assignee'>{new Date(grievance.assignedDate).toLocaleDateString()}</div>
+                            <div className='row-assignee'>{grievance.status}</div>
+                            <div className='row-feedback'>{grievance.feedback || 'No Feedback'}</div>
                         </div>
 
                     </div>)

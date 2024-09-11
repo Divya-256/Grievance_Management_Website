@@ -19,7 +19,7 @@
   
   h1 {
     font-size: 2rem;
-    color: #333;
+    color: white;
     margin-bottom: 20px;
     text-align: center;
   }
@@ -84,7 +84,7 @@
 
   p {
     font-size: 29px;
-    color: rgb(24, 195, 61);
+    color: #00fcff;
     text-align: center;
   }
 

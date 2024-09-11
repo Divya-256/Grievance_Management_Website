@@ -17,7 +17,7 @@
 .rows{
   padding: 5px;
   border-radius: 10px;
-  background-image: linear-gradient(to right, #000000,#1b1f5d);
+  background: linear-gradient(to right, #000000,#1b1f5d);
   margin: 20px;
 }
 .table-row{
@@ -28,10 +28,15 @@
   text-align: center;
   cursor: pointer;
 }
-.row{
-  margin-left: 55px;
-  margin-right: 50px;
-  width: 200px;
+.rows:hover{
+  background: #060e58;
+  transition: 0.5s;
+  transform: scale(1.02);
+}
+.row-assignee, .row-feedback{
+  margin-left: 65px;
+  margin-right: 60px;
+  width: 250px;
 }
 
 
@@ -117,3 +122,33 @@
     margin-top: 20px;
   }
   
+  @media screen and (max-width: 900px) {
+    .row-assignee, .row-feedback{
+      margin-left: 0px;
+      margin-right: 0px;
+      width: 100px;
+    }
+  }
+
+  @media screen and (max-width: 376px) {
+    .row-assignee {
+      margin-left: 10px;
+      margin-right: 0px;
+      font-size: smaller;
+      font-weight: normal;
+      width: 50px;
+    }
+    .row-feedback{
+      display: none;
+    }
+    .table-feedback{
+      display: none;
+    }
+    .table-bg{
+      margin: 2px;
+    }
+    
+    .rows{
+      margin: 2px;
+    }
+  }

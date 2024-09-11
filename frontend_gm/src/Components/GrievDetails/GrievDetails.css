@@ -9,9 +9,26 @@
     padding: 20px;
     margin-top: 20px;
   }
+
+  .details{
+    color: rgb(71, 169, 244);
+  }
   
+  strong{
+    color: white;
+  }
+
   .updateStatus, .feedbackSection {
     margin: 15px 0;
+  }
+
+  .update-select{
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #1b1f61;
+    color: white;
+    margin-top: 10px;
   }
   
   label {
@@ -21,6 +38,7 @@
   
   textarea {
     width: 100%;
+    margin-top: 10px;
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ddd;
@@ -28,7 +46,7 @@
   }
   
   .submitBtn {
-    background-color: #4CAF50;
+    background-color: #1b1f61;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -36,11 +54,11 @@
   }
   
   .submitBtn:hover {
-    background-color: #45a049;
+    background-color: #1b1f61;
   }
   
   .successMessage {
-    color: green;
+    color: white;
     font-weight: bold;
     margin-top: 20px;
   }

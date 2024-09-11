@@ -1,7 +1,10 @@
 import './SuperVDashboard.css';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function SuperVDashboard() {
+
+  const navigate = useNavigate();
 
   const [grievances, setGrievances] = useState([]);
   const [assigneeUpdate, setAssigneeUpdate] = useState({});
@@ -43,8 +46,12 @@ function SuperVDashboard() {
     console.log(assigneeUpdate);
   };
 
+  const handleRowSelect = (grievance) => {
+    navigate(`/grievance-list/${grievance.id}`, { state: { grievance } });
+  };
+
   return (
-    <div className='grievForm'>
+    <div className='griev'>
         <div>
             <h1>Grievance Management Website</h1>
             <h2>SuperVisor Dashboard</h2>
@@ -67,12 +74,12 @@ function SuperVDashboard() {
             </tr>
           ) : ( grievances.map((grievance) => (
 
-                    <div className='rows'>
+                    <div className='rows' onClick={() => handleRowSelect(grievance)}>
                         <div className="table-row">
-                            <div className="row">{grievance.id}</div>
-                            <div className="row">{grievance.user.name}</div>
-                            <div className="row">{grievance.category}</div>
-                            <div className='row'>
+                            <div className="row-superv">{grievance.id}</div>
+                            <div className="row-superv">{grievance.user.name}</div>
+                            <div className="row-superv">{grievance.category}</div>
+                            <div className='row-superv'>
                                 <select
                                   className='assignee-select'
                                   onChange={(e) => handleAssigneeChange(grievance.id, e.target.value)}>
@@ -81,7 +88,7 @@ function SuperVDashboard() {
                                     <option value="assignee3">Assignee 3</option>
                                 </select>
                             </div>
-                            <div className='row'>{grievance.status}</div>
+                            <div className='row-superv'>{grievance.status}</div>
                         </div>
 
                     </div>)
