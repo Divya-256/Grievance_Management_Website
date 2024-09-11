@@ -32,6 +32,7 @@ export default function Signup() {
 
   return (
     <div className='signupForm'onSubmit={handleSubmit}>
+      <h1>SIGNUP</h1>
       <div className='innerForm'>
        <form>
           <div className='formGroup'>
@@ -49,8 +50,8 @@ export default function Signup() {
           <div className='formGroup'>
             <button type='submit'>Submit</button>
           </div>
-          {successMessage && <p style={{color:'green'}}>{successMessage}</p>}
-          {errorMessage && <p style={{color:'green'}}>{errorMessage}</p>}
+          {successMessage && <div style={{color:'green'}}>{successMessage}</div>}
+          {errorMessage && <div style={{color:'red'}}>{errorMessage}</div>}
        </form>
 
        </div>

@@ -47,7 +47,7 @@ function SuperVDashboard() {
   };
 
   const handleRowSelect = (grievance) => {
-    navigate(`/grievance-list/${grievance.id}`, { state: { grievance } });
+    navigate(`/grievances/${grievance.id}`, { state: { grievance } });
   };
 
   return (
@@ -80,13 +80,14 @@ function SuperVDashboard() {
                             <div className="row-superv">{grievance.user.name}</div>
                             <div className="row-superv">{grievance.category}</div>
                             <div className='row-superv'>
-                                <select
+                                {/* <select
                                   className='assignee-select'
                                   onChange={(e) => handleAssigneeChange(grievance.id, e.target.value)}>
                                     <option value="assignee1">Assignee 1</option>
                                     <option value="assignee2">Assignee 2</option>
                                     <option value="assignee3">Assignee 3</option>
-                                </select>
+                                </select> */}
+                                {grievance.assignee}
                             </div>
                             <div className='row-superv'>{grievance.status}</div>
                         </div>

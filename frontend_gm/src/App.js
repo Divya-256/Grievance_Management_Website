@@ -8,6 +8,8 @@ import AssigneeDashboard from './Components/AssigneeDashboard/AssigneeDashboard'
 import SuperVDashboard from './Components/SupervisorDashboard/SuperVDashboard';
 // import TempAssignee from './Components/Temp/TempAssignee';
 import GrievDetails from './Components/GrievDetails/GrievDetails';
+import DetailsSuperVisor from './Components/GrievDetails/DetailsSuperVisor';
+
 function App() {
   return (
     <Router>
@@ -21,6 +23,7 @@ function App() {
            <Route path='/supervDashboard' element={<SuperVDashboard/>}/>
             {/* <Route path='/temp' element={<TempAssignee/>}/> */}
             <Route path='/grievance-list/:id' element={<GrievDetails />} />
+            <Route path='/grievances/:id' element={<DetailsSuperVisor />} />
       </Routes>
      
     </div>

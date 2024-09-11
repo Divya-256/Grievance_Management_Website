@@ -38,7 +38,7 @@ export default function HomePage() {
 
   return (
     <div className="loginPage">
-
+      <h1>LOGIN</h1>
       <form className="loginForm" onSubmit={handleLoginSubmit}>
         <div className="formGroup">
           <label>Email</label>
@@ -63,10 +63,10 @@ export default function HomePage() {
         <div className="formGroup">
           <button type="submit" className="submitBtn">Login</button>
         </div>
-        {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+        {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
       </form>
       <div className="signupPrompt">
-        <p>New to the system?</p>
+        <div>New to the system?</div>
         <button className="signupBtn" onClick={redirectToSignup}>Sign Up</button>
       </div>
     </div>

@@ -4,7 +4,7 @@ export default function HomePage() {
   return (
     <div className='homePage'>
 
-            <h1>Laptop Grievance Management System</h1>
+            <h1> Grievance Management System</h1>
          
       
             <div className='aboutUs'>
