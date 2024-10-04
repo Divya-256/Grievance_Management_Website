@@ -99,7 +99,14 @@ export default function UserDashboard() {
                     </div>
                     <div className="form-group">
                         <label>Category: </label>
-                        <input type="text"  value={category} onChange={(e) => setCategory(e.target.value)} required />
+                        <select value={category} onChange={(e) => setCategory(e.target.value)} required>
+                                  
+                                        <option value="Hardware Issue">Hardware Issue</option>
+                                        <option value="Software Issue">Software Issue</option>
+                                        <option value="Network Connectivity">Network Connectivity</option>
+                                        <option value="Battery Issue">Battery Issue</option>
+                                        <option value="Performance Issue">Performance Issue</option>
+                                    </select>
                     </div>
                </div>
                </div>
