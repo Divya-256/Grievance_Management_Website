@@ -1,56 +1,34 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState,useEffect,useContext } from 'react';
 import axios from 'axios';
-import './UserDashboard.css';  
+import { BASE_URL } from '../../Config/config';
+import './UserDashboard.css';
+import { UserContext } from '../UserContext/userContext';  
+import { useNavigate } from 'react-router-dom';
 
 export default function UserDashboard() {
+
+    const { user } = useContext(UserContext);
+    const navigate = useNavigate();
+
     const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
+    const [email, setEmail] = useState(null);
     const [address, setAddress] = useState('');
     const [category, setCategory] = useState('');
-    const [description, setDescription] = useState('');
+    const [complaint, setComplaint] = useState('');
     const [submittedGrievances,setSubmittedGrievances]=useState([]);
       
-    // useEffect(() => {
-    //     fetchSubmittedGrievances();
-    // }, []);
-
-    //remove below useeffect to display by fetching actual data,this is provided for demo view of previously submitted grievance
     useEffect(() => {
-       
-        const mockGrievances = [
-            {
-                id: 1,
-                category: 'Electricity Issue',
-                description: 'The electricity is not working in my house.',
-                status: 'Pending',
-                createdAt: '2023-09-04T10:30:00'
-            },
-            {
-                id: 2,
-                category: 'Water Supply Issue',
-                description: 'There is no water supply in my area.The electricity is not working in my house.The electricity is not working in my house.The electricity is not working in my house.The electricity is not working in my house.The electricity is not working in my house.',
-                status: 'Resolved',
-                createdAt: '2023-09-02T15:45:00'
-            },
-            {
-                id: 3,
-                category: 'Road Maintenance',
-                description: 'The road in front of my house is not properly maintained.',
-                status: 'In Progress',
-                createdAt: '2023-09-01T09:00:00'
-            }
-        ];
-        setSubmittedGrievances(mockGrievances);
-       
+        if(!user) navigate('/login');
+        fetchSubmittedGrievances();
+        setEmail(user);
     }, []);
+
     
     const fetchSubmittedGrievances = async () => {
         try {
-            const token = localStorage.getItem('token'); 
-            const response = await axios.get('/api/complaints/user', {
-                headers: { Authorization: `Bearer ${token}` }
-            });
-            setSubmittedGrievances(response.data);
+            const res = await axios.get(`${BASE_URL}/grievances/user/${user}`, { withCredentials: true });
+            console.log(res.data);
+            setSubmittedGrievances(res.data);
         } catch (error) {
             alert('Failed to fetch previous grievances!');
         }
@@ -59,15 +37,21 @@ export default function UserDashboard() {
     const submitGrievance = async (e) => {
         e.preventDefault();
         try {
-            const token = localStorage.getItem('token'); 
-            await axios.post('/api/grievances', 
-                { name, email, address, category, description },
-                { headers: { Authorization: `Bearer ${token}` } }
+            // const token = localStorage.getItem('token'); 
+            const res = await axios.post(`${BASE_URL}/grievances`, 
+                { name, email, category, address, complaint },
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    withCredentials: true,  // Optional: Only if cookies or credentials are needed
+                }
             );
             fetchSubmittedGrievances();
+            console.log(res);
             alert("Grievance submitted!");
         } catch (error) {
-            alert('Failed to submit the grievance!');
+            alert('Failed to submit the grievance!',error);
         }
     };
 
@@ -89,7 +73,8 @@ export default function UserDashboard() {
                     </div>
                     <div className="form-group">
                         <label>Email: </label>
-                        <input type='email' value={email} onChange={(e) => setEmail(e.target.value)} required />
+                        {/* <input type='email' value={email} onChange={(e) => setEmail(e.target.value)} required /> */}
+                        <div>{user}</div>
                     </div>
                 </div>
                <div className="row2">
@@ -105,7 +90,7 @@ export default function UserDashboard() {
                </div>
                 <div className="form-group">
                     <label>Description: </label>
-                    <textarea  value={description} onChange={(e) => setDescription(e.target.value)} required />
+                    <textarea  value={complaint} onChange={(e) => setComplaint(e.target.value)} required />
                 </div>
                 <button type="submit">Submit Grievance</button>
             </form>
@@ -125,15 +110,17 @@ export default function UserDashboard() {
                                 <th>Description</th>
                                 <th>Submitted At</th>
                                 <th>Status</th>
+                                <th>Feedback</th>
                                 </tr>
                             {submittedGrievances.map((grievance)=>(
                                 
                                 <tr key={grievance.id}>
                                     <td>{grievance.id}<br/></td>
                                     <td>{grievance.category} <br /></td>
-                                    <td>{grievance.description}<br/></td>
+                                    <td>{grievance.complaint}<br/></td>
                                     <td>{new Date(grievance.createdAt).toLocaleString()}</td>
                                     <td>{grievance.status} <br /></td>
+                                    <td>{grievance.feedback?grievance.feedback:"No feedback yet"} <br /></td>
                                 </tr>
                             ))}
                         

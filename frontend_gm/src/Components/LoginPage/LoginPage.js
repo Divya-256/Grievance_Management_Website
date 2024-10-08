@@ -1,12 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './LoginPage.css';
+import { BASE_URL } from '../../Config/config';
+import { UserContext } from '../UserContext/userContext';
 
 export default function HomePage() {
+
+  const { login } = useContext(UserContext);
+
   const [loginData, setLoginData] = useState({
-    email: '',
-    password: ''
+    username: "",
+    password: ""
   });
   const [errorMessage, setErrorMessage] = useState(null);
   const navigate = useNavigate();
@@ -18,16 +23,29 @@ export default function HomePage() {
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     try {
+      console.log(loginData);
+      const response = await axios.post(`${BASE_URL}/api/auth/login`, loginData,new URLSearchParams({
+        username: loginData.username,  // Ensure this matches what Spring expects
+        password: loginData.password,  // Same for the password
+      }), {
+          headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          withCredentials: true,  // Make sure credentials (cookies) are sent with the request
+      });
+      console.log(response.data);
+      let user = response.data.role.slice(5);
+      login(response.data.email)
 
-      const response = await axios.post('/api/login', loginData);
-      if (response.data.role === 'CUSTOMER') {
-        navigate('/customer-dashboard'); // Redirect to customer dashboard
-      } else if (response.data.role === 'SUPERVISOR') {
-        navigate('/supervisor-dashboard'); // Redirect to supervisor dashboard
-      } else if (response.data.role === 'ASSIGNEE') {
-        navigate('/assignee-dashboard'); // Redirect to assignee dashboard
+      if (user === 'USER') {
+        navigate('/userDashboard'); // Redirect to customer dashboard
+      } else if (user === 'SUPERVISOR') {
+        navigate('/supervisorDashboard'); // Redirect to supervisor dashboard
+      } else if (user === 'ASSIGNEE') {
+        navigate('/assigneeDashboard'); // Redirect to assignee dashboard
       }
     } catch (error) {
+      console.error("Login failed:", error);
       setErrorMessage('Login failed. Please check your credentials.');
     }
   };
@@ -44,8 +62,8 @@ export default function HomePage() {
           <label>Email</label>
           <input
             type="email"
-            name="email"
-            value={loginData.email}
+            name="username"
+            value={loginData.username}
             onChange={handleChange}
             required
           />

@@ -1,44 +1,36 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import './AssigneeDashboard.css';
 import { useNavigate,useLocation } from 'react-router-dom';
+import axios from 'axios';
+import { BASE_URL } from '../../Config/config';
+import { UserContext } from '../UserContext/userContext';
 
 export default function AssigneeDashboard() {
+
   const [grievances, setGrievances] = useState([]);
   const navigate = useNavigate();
-   const location=useLocation();
+  const location=useLocation();
+  const {user} = useContext(UserContext);
 
-  useEffect(() => {
-    const mockGrievances = [
-      {
-        id: 1,
-        user: { name: 'John Doe', email: 'john@example.com', address: '123 Main St' },
-        category: 'Damaged Products',
-        status: 'PENDING',
-        feedback: '',
-        assignedDate: '2023-09-01',
-      },
-      {
-        id: 2,
-        user: { name: 'Jane Smith', email: 'jane@example.com', address: '456 Oak St' },
-        category: 'Incorrect Products',
-        status: 'IN_PROGRESS',
-        feedback: '',
-        assignedDate: '2023-09-02',
-      },
-      {
-        id: 3,
-        user: { name: 'Bob Johnson', email: 'bob@example.com', address: '789 Pine St' },
-        category: 'App Issues',
-        status: 'PENDING',
-        feedback: '',
-        assignedDate: '2023-09-03',
-      }
-    ];
+   useEffect(() => {
 
-    const sortedGrievances = mockGrievances.sort((a, b) => new Date(b.assignedDate) - new Date(a.assignedDate));
-    setGrievances(sortedGrievances);
+    if(!user) navigate('/login');
+  
+    const fetchGrievances = async () => {
+        try {
+            const res = await axios.get(`${BASE_URL}/grievances/assignee/md`, { withCredentials: true });
+            console.log(res.data);
+
+            const sortedGrievances = res.data.sort((a, b) => new Date(b.assignedDate) - new Date(a.assignedDate));
+            setGrievances(sortedGrievances);
+        } catch (error) {
+            alert('Failed to fetch grievances!');
+        }
+    };
+
+    // Call the async function
+    fetchGrievances();
   }, []);
-
   
   const handleRowSelect = (grievance) => {
     navigate(`/grievance-list/${grievance.id}`, { state: { grievance } });
@@ -108,7 +100,7 @@ export default function AssigneeDashboard() {
                     <div className='rows' onClick={() => handleRowSelect(grievance)}>
                         <div className="table-row">
                             <div className="row-assignee">{grievance.id}</div>
-                            <div className="row-assignee">{grievance.user.name}</div>
+                            <div className="row-assignee">{grievance.name}</div>
                             <div className="row-assignee">{grievance.category}</div>
                             <div className='row-assignee'>{new Date(grievance.assignedDate).toLocaleDateString()}</div>
                             <div className='row-assignee'>{grievance.status}</div>

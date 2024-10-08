@@ -1,26 +1,44 @@
 import React, { useState } from 'react'
 import axios from 'axios';
 import './Signup.css';
+import { BASE_URL } from '../../Config/config';
+import { Link } from 'react-router-dom';
+
 export default function Signup() {
     const[formData,setFormData]=useState({
-        'username':'',
+        'name':'',
         'email':'',
         'password':''
     })
     const[errorMessage,setErrorMessage]=useState(null);
     const[successMessage,setSuccessMessage]=useState(null);
     const handleChange=(e)=>{
-         setFormData({...formData,[e.target.name]:[e.target.value]});
+         setFormData({...formData,[e.target.name]:e.target.value});
     };
     const handleSubmit=async(e)=>{
         e.preventDefault();
         try{
-            const response=await axios.post('/api/signup',formData);
-            setSuccessMessage("Signup successful! You can now login.");
+            console.log(formData);
+            const response = await axios.post(`${BASE_URL}/api/users/signup`,formData,{
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              withCredentials: true,  // Optional: Only if cookies or credentials are needed
+          });
+            console.log(response);
+            if(response.status=== 200){
+                setSuccessMessage(
+                    <>
+                        Signup successful! You can now <Link to="/login" style={{ color: 'blue' }}>login</Link>.
+                    </>
+                );
+            }
         }
         catch(error){
-            if(error.response && error.status ==409){
-                setErrorMessage("User already exist with the same email.Please log in.");
+            if(error.response && error.status === 500){
+                setErrorMessage(<>
+                    User already exist with the same email.Please <Link to="/login" style={{ color: 'blue' }}>login</Link>.
+                </>);
             }
             else{
                 setErrorMessage("Signup failed.Please try again.");
@@ -37,7 +55,7 @@ export default function Signup() {
        <form>
           <div className='formGroup'>
             <label>Name</label>
-            <input type='text' name='username' value={formData.username} onChange={handleChange} required></input>
+            <input type='text' name='name' value={formData.username} onChange={handleChange} required></input>
           </div>
           <div className='formGroup'>
             <label>Email</label>
