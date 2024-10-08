@@ -71,6 +71,7 @@ export default function EmployeeSignup() {
                         <label>Role: </label>
                         <select name='role' value={formData.role} onChange={handleChange} required>
                             <option value="">Select</option>
+                            <option value="SUPERVISOR">SuperVisor</option>
                             <option value="Technicians">Technicians</option>
                             <option value="Software_Engineers">Software Engineers</option>
                             <option value="Performance_Analysts">Performance Analysts</option>

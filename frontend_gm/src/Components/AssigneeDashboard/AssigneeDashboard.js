@@ -47,7 +47,7 @@ export default function AssigneeDashboard() {
   return (
     <div className="griev">
       <h1>Grievance Management Website</h1>
-      <h2>Assignee Dashboard</h2>
+      <h2>Assignee-{user.user} Dashboard</h2>
       <h2>Assignments</h2>
       
       {/* <table className="grievances-table">

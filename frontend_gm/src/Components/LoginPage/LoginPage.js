@@ -41,7 +41,7 @@ export default function HomePage() {
       if (user === 'USER') {
         navigate('/userDashboard'); 
       } else if (user === 'SUPERVISOR') {
-        navigate('/supervisorDashboard'); 
+        navigate('/supervDashboard'); 
       } else if (user === 'Technicians' || user === 'Software_Engineers' || user === 'Network_Administrators' || user === 'Performance_Analysts' ) {
         navigate('/assigneeDashboard'); 
       }
