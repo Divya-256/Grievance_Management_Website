@@ -35,14 +35,15 @@ export default function HomePage() {
       });
       console.log(response.data);
       let user = response.data.role.slice(5);
-      login(response.data.email)
+      let email = response.data.email
+      login({email,user})
 
       if (user === 'USER') {
-        navigate('/userDashboard'); // Redirect to customer dashboard
+        navigate('/userDashboard'); 
       } else if (user === 'SUPERVISOR') {
-        navigate('/supervisorDashboard'); // Redirect to supervisor dashboard
-      } else if (user === 'ASSIGNEE') {
-        navigate('/assigneeDashboard'); // Redirect to assignee dashboard
+        navigate('/supervisorDashboard'); 
+      } else if (user === 'Technicians' || user === 'Software_Engineers' || user === 'Network_Administrators' || user === 'Performance_Analysts' ) {
+        navigate('/assigneeDashboard'); 
       }
     } catch (error) {
       console.error("Login failed:", error);

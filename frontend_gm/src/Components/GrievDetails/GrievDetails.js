@@ -45,6 +45,7 @@ export default function GrievDetails() {
             <div className="updateStatus">
               <label htmlFor={`status-${grievance.id}`}>Update Status:</label>
               <select id={`status-${grievance.id}`} value={statusUpdate} onChange={(e) => setStatusUpdate(e.target.value)} className='update-select'>
+                <option value="">Select</option>
                 <option value="PENDING">Pending</option>
                 <option value="IN_PROGRESS">In Progress</option>
                 <option value="RESOLVED">Resolved</option>

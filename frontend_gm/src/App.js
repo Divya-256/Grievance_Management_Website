@@ -6,7 +6,7 @@ import LoginPage from './Components/LoginPage/LoginPage';
 import HomePage from './Components/HomePage/HomePage';
 import AssigneeDashboard from './Components/AssigneeDashboard/AssigneeDashboard'
 import SuperVDashboard from './Components/SupervisorDashboard/SuperVDashboard';
-// import TempAssignee from './Components/Temp/TempAssignee';
+import EmployeeSignup from './Components/SignupPage/EmployeeSignup';
 import GrievDetails from './Components/GrievDetails/GrievDetails';
 import DetailsSuperVisor from './Components/GrievDetails/DetailsSuperVisor';
 
@@ -21,7 +21,7 @@ function App() {
            <Route path='/userDashboard' element={<UserDashboard/>}/>
            <Route path='/assigneeDashboard' element={<AssigneeDashboard/>}/>
            <Route path='/supervDashboard' element={<SuperVDashboard/>}/>
-            {/* <Route path='/temp' element={<TempAssignee/>}/> */}
+            <Route path='/employeeSignup' element={<EmployeeSignup/>}/>
             <Route path='/grievance-list/:id' element={<GrievDetails />} />
             <Route path='/grievances/:id' element={<DetailsSuperVisor />} />
       </Routes>

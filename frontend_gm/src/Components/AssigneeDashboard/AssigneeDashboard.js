@@ -18,9 +18,9 @@ export default function AssigneeDashboard() {
   
     const fetchGrievances = async () => {
         try {
-            const res = await axios.get(`${BASE_URL}/grievances/assignee/md`, { withCredentials: true });
-            console.log(res.data);
-
+            const res = await axios.get(`${BASE_URL}/grievances/assignee/${user.user}`, { withCredentials: true });
+            console.log(res.data)
+            console.log(user.user)
             const sortedGrievances = res.data.sort((a, b) => new Date(b.assignedDate) - new Date(a.assignedDate));
             setGrievances(sortedGrievances);
         } catch (error) {
@@ -102,7 +102,7 @@ export default function AssigneeDashboard() {
                             <div className="row-assignee">{grievance.id}</div>
                             <div className="row-assignee">{grievance.name}</div>
                             <div className="row-assignee">{grievance.category}</div>
-                            <div className='row-assignee'>{new Date(grievance.assignedDate).toLocaleDateString()}</div>
+                            <div className='row-assignee'>{new Date(grievance.createdAt).toLocaleString()}</div>
                             <div className='row-assignee'>{grievance.status}</div>
                             <div className='row-feedback'>{grievance.feedback || 'No Feedback'}</div>
                         </div>

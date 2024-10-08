@@ -9,7 +9,7 @@ export default function DetailsSuperVisor() {
   const navigate = useNavigate();
   const grievance = location.state.grievance;
   const [successMessage, setSuccessMessage] = useState(null);
-  const [assigneeUpdate, setAssigneeUpdate] = useState(grievance.assignee);
+  const [assigneeUpdate, setAssigneeUpdate] = useState(null);
 
   const handleSubmit = async() => {
     try {
@@ -44,9 +44,11 @@ export default function DetailsSuperVisor() {
             <div className="updateStatus">
               <label htmlFor={`status-${grievance.id}`}>Assignee:</label>
               <select id={`status-${grievance.id}`} value={assigneeUpdate} onChange={(e) => setAssigneeUpdate(e.target.value)} className='update-select'>
-                <option value="Manager">Manager</option>
-                <option value="Worker">Worker</option>
-                <option value="Engineer">Engineer</option>
+                <option value="">Select</option>
+                <option value="Technicians">Technicians</option>
+                <option value="Software_Engineers">Software Engineers</option>
+                <option value="Performance_Analysts">Performance Analysts</option>
+                <option value="Network_Administrators">Network Administrators</option>
               </select>
             </div>
             <button className="submitBtn" onClick={handleSubmit}>Submit</button>

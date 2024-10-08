@@ -20,13 +20,13 @@ export default function UserDashboard() {
     useEffect(() => {
         if(!user) navigate('/login');
         fetchSubmittedGrievances();
-        setEmail(user);
+        setEmail(user.email);
     }, []);
 
     
     const fetchSubmittedGrievances = async () => {
         try {
-            const res = await axios.get(`${BASE_URL}/grievances/user/${user}`, { withCredentials: true });
+            const res = await axios.get(`${BASE_URL}/grievances/user/${user.email}`, { withCredentials: true });
             console.log(res.data);
             setSubmittedGrievances(res.data);
         } catch (error) {
@@ -74,7 +74,7 @@ export default function UserDashboard() {
                     <div className="form-group">
                         <label>Email: </label>
                         {/* <input type='email' value={email} onChange={(e) => setEmail(e.target.value)} required /> */}
-                        <div>{user}</div>
+                        <div>{user.email}</div>
                     </div>
                 </div>
                <div className="row2">
@@ -85,13 +85,13 @@ export default function UserDashboard() {
                     <div className="form-group">
                         <label>Category: </label>
                         <select value={category} onChange={(e) => setCategory(e.target.value)} required>
-                                  
+                                        <option value="">Select</option>
                                         <option value="Hardware Issue">Hardware Issue</option>
                                         <option value="Software Issue">Software Issue</option>
                                         <option value="Network Connectivity">Network Connectivity</option>
                                         <option value="Battery Issue">Battery Issue</option>
                                         <option value="Performance Issue">Performance Issue</option>
-                                    </select>
+                        </select>
                     </div>
                </div>
                </div>
