@@ -14,7 +14,7 @@ function SuperVDashboard() {
   const [assigneeUpdate, setAssigneeUpdate] = useState({});
 
   useEffect(() => {
-    if(!user) navigate('/login');
+    if(!(user.user==='SUPERVISOR')) navigate('/login');
   
     const fetchGrievances = async () => {
         try {

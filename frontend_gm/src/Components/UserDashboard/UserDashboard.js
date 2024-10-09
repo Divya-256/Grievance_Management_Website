@@ -18,7 +18,7 @@ export default function UserDashboard() {
     const [submittedGrievances,setSubmittedGrievances]=useState([]);
       
     useEffect(() => {
-        if(!user) navigate('/login');
+        if(!(user.user==='USER')) navigate('/login');
         fetchSubmittedGrievances();
         setEmail(user.email);
     }, []);

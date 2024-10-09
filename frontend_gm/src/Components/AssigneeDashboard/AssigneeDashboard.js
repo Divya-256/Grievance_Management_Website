@@ -14,7 +14,7 @@ export default function AssigneeDashboard() {
 
    useEffect(() => {
 
-    if(!user) navigate('/login');
+    if(!(user.user === 'Technicians' || user.user === 'Software_Engineers' || user.user === 'Network_Administrators' || user.user === 'Performance_Analysts')) navigate('/login');
   
     const fetchGrievances = async () => {
         try {
